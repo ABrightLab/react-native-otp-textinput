@@ -36,7 +36,7 @@ class OTPTextView extends Component {
     super(props);
 
     this.state = {
-      focusedInput: 0,
+      focusedInput: -1,
       otpText: getOTPTextChucks(
         props.inputCount,
         props.inputCellLength,
@@ -228,6 +228,7 @@ class OTPTextView extends Component {
           style={inputStyle}
           maxLength={this.props.inputCellLength}
           onFocus={() => this.onInputFocus(i)}
+          onBlur={() => this.setState({ focusedInput: -1 })}
           onChangeText={(text) => this.onTextChange(text, i)}
           multiline={false}
           onKeyPress={(e) => this.onKeyPress(e, i)}
